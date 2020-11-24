@@ -207,6 +207,8 @@ function showTeam(data){
 
     document.getElementById("image").innerHTML = imgHtml;
     document.getElementById("content").innerHTML = infoTeam;
+    document.getElementById('progress1').style.display = 'none'
+    document.getElementById('progress2').style.display = 'none'
     
 }
 
