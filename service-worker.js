@@ -1,81 +1,43 @@
-const CACHE_NAME = "footballapp-v1.1";
-const urlsToCache = [
-  "/",
-  "/nav.html",
-  "/index.html",
-  "/team.html", 
-  "/pages/home.html",
-  "/pages/about.html",
-  "/pages/contact.html",
-  "/pages/saved.html",
-  "/css/materialize.min.css",
-  "/css/style.css",
-  "/js/materialize.min.js",
-  "/js/nav.js",
-  "/js/api.js",
-  "js/idb.js",
-  "js/db.js",
-  "/js/sw-register.js",
-  "/img/icon.png",
-  "/img/icon512x512.png",
-  "/img/icon192x192.png",
-  "/img/js.png",
-  "/img/java.png",
-  "/manifest.json",
-  "/package.json",
-  "https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js",
-  "https://fonts.googleapis.com/icon?family=Material+Icons",
-  "https://fonts.gstatic.com/s/materialicons/v67/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2"
-];
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js');
 
-// untuk buat chache
-self.addEventListener("install", event => {
+if (workbox)
+    console.log(`Workbox berhasil dimuat`);
+else
+    console.log(`Workbox gagal dimuat`);
 
-    console.log("ServiceWorker: Menginstall..");
-
-    event.waitUntil(
-        caches.open(CACHE_NAME).then(cache => {
-            console.log("ServiceWorker: Membuka cache..");
-            return cache.addAll(urlsToCache);
-        })
-    );
+workbox.precaching.precacheAndRoute([
+    { url: '/', revision: '1' },
+    { url: '/index.html', revision: '1' },
+    { url: '/nav.html', revision: '1' },
+    { url: '/team.html', revision: '1' },
+    { url: '/css/materialize.min.css', revision: '1' },
+    { url: '/css/style.css', revision: '1' },
+    { url: '/js/materialize.min.js', revision: '1' },
+    { url: '/js/nav.js', revision: '1' },
+    { url: '/js/api.js', revision: '1' },
+    { url: '/js/idb.js', revision: '1' },
+    { url: '/js/db.js', revision: '1' },
+    { url: '/js/sw-register.js', revision: '1' },
+    { url: '/img/icon.png', revision: '1' },
+    { url: '/img/icon512x512.png', revision: '1' },
+    { url: '/img/icon192x192.png', revision: '1' },
+    { url: '/img/js.png', revision: '1' },
+    { url: '/img/java.png', revision: '1' },
+    { url: '/manifest.json', revision: '1' },
+    { url: '/package.json', revision: '1' },
+    { url: 'https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js', revision: '1' },
+    { url: 'https://fonts.googleapis.com/icon?family=Material+Icons', revision: '1' },
+    { url: 'https://fonts.gstatic.com/s/materialicons/v67/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2', revision: '1' },
+], {
+    ignoreUrlParametersMatching: [/.*/]
 });
 
-self.addEventListener("fetch", event => {
-    const base_url = "https://api.football-data.org/v2/";
-    if (event.request.url.indexOf(base_url) > -1) {
-        event.respondWith(
-            caches.open(CACHE_NAME).then(cache => {
-                return fetch(event.request).then(response => {
-                    cache.put(event.request.url, response.clone());
-                    return response;
-                })
-            })
-        );
-    } else {
-        event.respondWith(
-            caches.match(event.request, {ignoreSearch: true}).then(response => {
-                return response || fetch (event.request);
-            })
-        )
-    }
-});
-
-self.addEventListener("activate", event => {
-    event.waitUntil(
-        caches.keys().then(cacheNames => {
-            return Promise.all(
-                cacheNames.map(cacheName => {
-                    if (cacheName !== CACHE_NAME) {
-                        console.log("ServiceWorker: cache " + cacheName + " dihapus");
-                        return caches.delete(cacheName);
-                    }
-                })
-            );
-        })
-    );
-});
-
+workbox.routing.registerRoute(
+    new RegExp('./pages/'),
+    workbox.strategies.staleWhileRevalidate({
+        cacheName: 'pages'
+    })
+);
 
 self.addEventListener('push', event => {
   var body;
