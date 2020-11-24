@@ -173,6 +173,7 @@ function showTeam(data){
 
     let squad = "";
     let squadElement = document.getElementById("squad");
+    document.getElementById('progress1').style.display = 'none'
 
     data.squad.forEach((player) => {
         squad += `
@@ -207,7 +208,6 @@ function showTeam(data){
 
     document.getElementById("image").innerHTML = imgHtml;
     document.getElementById("content").innerHTML = infoTeam;
-    document.getElementById('progress1').style.display = 'none'
     document.getElementById('progress2').style.display = 'none'
     
 }
