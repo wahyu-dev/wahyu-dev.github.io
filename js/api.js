@@ -64,6 +64,8 @@ function showStanding(data) {
                     <td>${standing.goalDifference}</td>
                 </tr>
         `;
+
+        document.getElementById('progress').style.display = 'none'
     });
 
      standingElement.innerHTML = `
