@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }else if(this.status === 404){
                     content.innerHTML = "<p>Halaman tidak ditemukan.</p>";
                 }else{
-                    content.innerHTML = "<p>Ups... halaman tidak dapat diakses.</p>";
+                    content.innerHTML = "<p>Ups... halaman gagal dimuat</p>";
                 }
             }
         }
