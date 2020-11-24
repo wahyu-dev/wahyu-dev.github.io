@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4){
 
-                if (this.status != 200)return;
+                if (this.status !== 200)return;
 
                 // muat daftar tautan menu 
                 document.querySelectorAll(".topnav, .sidenav").forEach(function(elm) {

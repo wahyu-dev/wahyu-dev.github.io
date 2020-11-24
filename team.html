@@ -19,7 +19,8 @@
     <!-- Navigasi -->
     <nav class="light-blue" role="navigation">
         <div class="nav-wrapper container">
-            <a href="./index.html" class="brand-logo" id="logo-container"><i class="material-icons">arrow_back</i>Apps</a>
+            <a href="./index.html" class="brand-logo" id="logo-container"><i
+                    class="material-icons">arrow_back</i>Apps</a>
             <ul class="topnav right hide-on-med-and-down"></ul>
             <ul class="sidenav" id="nav-mobile"></ul>
         </div>
@@ -63,11 +64,11 @@
 
             let save = document.getElementById("save");
             let item;
-            if (isFromSaved){
+            if (isFromSaved) {
                 save.style.display = 'none';
 
                 getSavedTeamById();
-            }else{
+            } else {
                 item = getTeamById();
             }
 
