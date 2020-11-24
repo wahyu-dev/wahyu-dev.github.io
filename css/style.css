@@ -1,0 +1,10 @@
+.wb {
+  word-break: break-all;
+}
+
+a:hover {
+  color: 	#00BFFF !important;
+}
+.img-card{
+  width: 50%;
+}
