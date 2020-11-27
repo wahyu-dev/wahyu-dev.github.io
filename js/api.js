@@ -229,7 +229,7 @@ function getSavedTeams(){
                             <table>
                                 <tr>
                                     <td colspan="2">${team.name}</td>
-                                    <td><button id="${team.id}" class="removeButton"><i class="material-icons">delete</i></button></td>
+                                    <td><button id="${team.id}" class="removeButton"><i id="${team.id}" class="material-icons">delete</i></button></td>
                                 </tr>
                             </table>
                         </div>
@@ -244,7 +244,13 @@ function getSavedTeams(){
     let removeBtn = document.querySelectorAll(".removeButton");
     for(let button of removeBtn){
         button.addEventListener("click", event => {
-            let teamId = event.target.id;
+            let teamId;
+            let target = event.target;
+            if (target.nodeName.toLowerCase() === "i"){
+                teamId = target.parentElement.id;
+            }else{
+                teamId = target.id;
+            }
             console.log(parseInt(teamId));
             deleteTeam(parseInt(teamId));
             getSavedTeams()
