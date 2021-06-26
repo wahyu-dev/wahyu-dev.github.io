@@ -1,7 +1,8 @@
-import { merge } from 'webpack-merge';
-import common from './webpack.common';
-
-export default merge(common, {
+/* eslint-disable no-undef */
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common');
+ 
+module.exports = merge(common, {
 	mode: 'production',
 	module: {
 		rules: [
