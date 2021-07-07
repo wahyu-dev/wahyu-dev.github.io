@@ -1,5 +1,6 @@
 import {formReviewTemplate} from '../views/templates/template-creator';
 import RestaurantSource from '../data/restaurant-source';
+import Swal from 'sweetalert2';
 
 const FormReview = {
 	async init ({formContainer, restaurant}) {
@@ -21,7 +22,11 @@ const FormReview = {
 				name: inputName.value,
 				review: inputReview.value
 			};
-			await RestaurantSource.addReview(reviewCustomer);
+			if (window.navigator.onLine){
+				await RestaurantSource.addReview(reviewCustomer);
+			}else {
+				Swal.fire('Warning', 'Lost Connection', 'error');
+			}
 		});
 	}
 };
