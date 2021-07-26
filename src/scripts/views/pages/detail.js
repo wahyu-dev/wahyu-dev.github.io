@@ -1,6 +1,6 @@
 import UrlParser from '../../routes/url-parser';
 import RestaurantSource from '../../data/restaurant-source';
-import LikeButtonInitiator from '../../utils/like-button-initiator';
+import LikeButtonPresenter from '../../utils/like-button-initiator';
 import FormReview from '../../utils/form-review';
 import {createRestaurantDetailTemplate, categoriesTemplate, menuFoodsTemplate, menuDrinksTemplate, customerReviewItemTemplate} from '../templates/template-creator';
 
@@ -38,7 +38,7 @@ const Detail = {
 
 		FormReview.init({formContainer: document.querySelector('#form_container'), restaurant: restoran});	
 		
-		LikeButtonInitiator.init({
+		LikeButtonPresenter.init({
 			likeButtonContainer: document.querySelector('#likeButtonContainer'),
 			Restaurant : {
 				id: restoran.id,
