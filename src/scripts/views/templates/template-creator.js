@@ -4,9 +4,9 @@ const createRestaurantItemTemplate = (restaurant) => `
 
 <article class="restoran-item">
 
-    <img class="item__thumbnail"
+    <img class="item__thumbnail lazyload"
 
-        src="${CONFIG.BASE_IMAGE_URL + restaurant.pictureId}"
+      data-src="${CONFIG.BASE_IMAGE_URL + restaurant.pictureId}"
 
         alt="${restaurant.name}">
 
@@ -27,7 +27,7 @@ const createRestaurantItemTemplate = (restaurant) => `
 `;
 
 const createRestaurantDetailTemplate = (restaurant) => `
-<img class="restaurant__poster" src="${CONFIG.BASE_IMAGE_URL + restaurant.pictureId}" alt="${restaurant.name}" />
+<img class="restaurant__poster lazyload" data-src="${CONFIG.BASE_IMAGE_URL + restaurant.pictureId}" alt="${restaurant.name}" />
 <div class="restaurant__info" id="restaurant__info">
   <h3>${restaurant.name} (${restaurant.rating} <i class="fa fa-star checked" aria-hidden="true"></i>)</h3>
   <p>${restaurant.address}, ${restaurant.city}</p>
