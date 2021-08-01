@@ -184,6 +184,13 @@
     }
 }
 
+@media screen and (max-width: 768px) {
+    /* image responsive */
+    .hero{
+        background-image: url("../public/images/heros/hero-image_2-small.jpg");
+    }
+}
+
 @media screen and (min-width: 800px) {
     .nav__list {
         max-width: 800px;
