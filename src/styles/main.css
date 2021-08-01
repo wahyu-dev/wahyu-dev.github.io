@@ -147,11 +147,13 @@ nav a:hover::after {
     align-items: center;
     min-height: 500px;
     width: 100%;
+    background-image: url("../public/images/heros/hero-image_2-large.jpg");
     text-align: center;
     background-position: center;
     background-color: green;
     position: relative;
-    background-image: url("../public/images/heros/hero-image_2-large.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .hero::after{
